@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td {
+    padding: 40px 10px;
+    text-align: center;
+    user-select: none;
+}
+
+input {
+    background: none;
+    border: none;
+    user-select: none;
+    outline:none;
+}

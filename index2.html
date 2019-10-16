@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<script>
+let table = document.createElement("table");
+
+for (let i = 0; i < 1000; i++) {
+    let tableTr = document.createElement("tr");
+
+    for (let y = 0; y < 10; y++) {
+        let tableTd = document.createElement("td"),
+            inputTd  = document.createElement("input");
+        inputTd.value = `row ${i} td ${y}`;
+        inputTd.disabled = true;
+        tableTd.appendChild(inputTd);
+        tableTr.appendChild(tableTd);
+    }
+
+    table.appendChild(tableTr);
+}
+
+document.body.appendChild(table);
+
+let targetMain = "";
+table.addEventListener("dblclick", (event) => {
+    let target = event.target;
+
+    if (target.tagName === "TD") {
+        target = target.querySelector("input");
+    }
+
+    if (target === targetMain || !target.closest("td")) return;
+
+    targetMain = target;
+    targetMain.removeAttribute("disabled");
+    targetMain.focus();
+});
+
+document.addEventListener("click", (event) => {
+    let target = event.target;
+
+    if (target.tagName === "TD") {
+        target = target.querySelector("input");
+    }
+
+    if (target === targetMain) {
+        targetMain.focus();
+        return;
+    }
+
+    targetMain.disabled = true;
+    targetMain = "";
+})
+
+
+</script>
+</body>
+</html>

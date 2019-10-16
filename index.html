@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+
+<script>
+let table = document.createElement("table");
+
+for (let i = 0; i < 1000; i++) {
+    let tableTr = document.createElement("tr");
+
+    for (let y = 0; y < 10; y++) {
+        let tableTd = document.createElement("td");
+        tableTd.innerHTML = `row ${i} td ${y}`;
+        tableTr.appendChild(tableTd);
+    }
+
+    table.appendChild(tableTr);
+}
+
+document.body.appendChild(table);
+
+let targetMain = null;
+
+table.addEventListener("dblclick", (event) => {
+    let target = event.target;
+
+    if (target.tagName !== "TD" || target.hasAttribute("contenteditable")) return;
+    targetMain = target;
+    targetMain.setAttribute("contenteditable", true);
+});
+
+document.addEventListener("click", (event) => {
+    if (!targetMain || !targetMain.hasAttribute("contenteditable") || event.target === targetMain) return;
+
+    targetMain.removeAttribute("contenteditable");
+});
+
+</script>
+
+</body>
+</html>
